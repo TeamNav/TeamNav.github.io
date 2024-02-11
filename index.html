@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="VoroNav">
+  <meta name="keywords" content="Object Navigation, Large Language Model, Zero-shot">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VoroNav</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+  <style>
+
+    #main{
+        position: relative;;
+        width: 1200px;
+    }
+
+    .box{
+        float: left;
+        padding: 15px 0 0 15px;
+/*        background-color: red;*/
+    }
+
+    .pic{
+        width: 500px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+
+    .pic img{
+        width: 500px;
+    }
+
+  </style>
+
+
+
+  
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">VoroNav:</h1>
+          <h2 class="title is-2 publication-title">Voronoi-based Zero-shot Object Navigation with Large Language Model</h2>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              Anonymous<sup>*</sup></span>
+          </div>
+
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://Voro-Nav.github.io"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Demo Link. -->
+              <span class="link-block">
+                <a href="https://Voro-Nav.github.io"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Demo</span>
+                  </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<link rel="stylesheet" type="text/css" href="js/simple_style.css" />
+<script type="text/javascript" src="js/simple_swiper.js"></script>
+
+
+  
+<section class="section">
+  <div class="container is-max-desktop">
+    
+    
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            In the realm of household robotics, the Zero-Shot Object Navigation (ZSON) task empowers agents to adeptly traverse unfamiliar environments and locate objects from novel categories without prior explicit training. This paper introduces VoroNav, a novel semantic exploration framework that proposes the Reduced Voronoi Graph to extract exploratory paths and planning nodes from a semantic map constructed in real time. 
+            By harnessing topological and semantic information, VoroNav designs text-based descriptions of paths and images that are readily interpretable by a large language model (LLM).
+            Our approach presents a synergy of path and farsight descriptions to represent the environmental context, enabling the LLM to apply commonsense reasoning to ascertain the optimal waypoints for navigation. 
+            Extensive evaluation on the HM3D and HSSD datasets validates that VoroNav surpasses existing ZSON benchmarks in both success rates and exploration efficiency (+2.8\% Success and +3.7\% SPL on HM3D, +2.6\% Success and +3.8\% SPL on HSSD). 
+            Additionally introduced metrics that evaluate obstacle avoidance proficiency and perceptual efficiency further corroborate the enhancements achieved by our method in ZSON planning.
+          </p>
+          <p>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+    <br>
+    <br>
+
+        <!-- Teaser -->
+        <div class="columns is-centered has-text-centered">
+      <div class="column is-six-fifths">
+      <h2 class="title is-3">Navigation Overview</h2>
+        <div class="content has-text-justified">
+        </div>  
+        <img id="model" width="50%" src="static/images/teaser.png">
+        <br>
+        <br>
+
+      </div>
+    </div>
+         <br>
+        <br>  
+    <!-- Paper model -->
+
+        <div class="columns is-centered has-text-centered">
+      <div class="column is-six-fifths">
+        <h2 class="title is-3">Model Framework</h2>
+        <div class="content has-text-justified">
+          <p>
+            <b>VoroNav framework comprises three modules: the Semantic Mapping Module, the Global Decision Module, and the Local Policy Module.</b>
+          </p>
+
+        </div>  
+        <img id="model" width="100%" src="static/images/framework.png">
+ 
+        <br>
+        <br>
+
+      </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <!-- Simulation Experiments -->
+
+        <div class="columns is-centered has-text-centered">
+      <div class="column is-six-fifths">
+        <h2 class="title is-3">Simulation Experiments</h2>
+        <div class="content has-text-justified">
+
+
+        </div>  
+        <img id="model" width="100%" src="static/images/result.png">
+ 
+        <br>
+        <br>
+
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{Anonymous-VoroNav,
+  author    = {Anonymous},
+  title     = {VoroNav: Voronoi-based Zero-shot Object Navigation with Large Language Model},
+  journal   = {Under Review},
+  year      = {2024},
+}</code></pre>
+  </div>
+</section>
+
+
+<section class="section" id="Acknowledgement">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgement</h2>
+    <p>
+      This website is adapted from <a
+      href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, licensed under a <a rel="license"
+                                          href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+      Commons Attribution-ShareAlike 4.0 International License</a>.
+    </p>
+  </div>
+</section>
+
+
+</body>
+</html>
